@@ -89,3 +89,119 @@ ORDER BY sales.customer_id;
 
 -- 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
   @@@ I am straggling in this question. Please help me. Thank you
+
+-- 11.Types of Joins? With example and usecase. All the number of records return and exact records.
+		SQL Server supports many kinds of different joins including INNER JOIN, SELF JOIN, CROSS JOIN, and OUTER JOIN. In fact, each join type defines the way two tables are related in a query. OUTER JOINS can further be divided into LEFT OUTER JOINS, RIGHT OUTER JOINS, and FULL OUTER JOINS.
+		
+		SQL INNER JOIN creates a result table by combining rows that have matching values in two or more tables.
+		SQL LEFT OUTER JOIN includes in a result table unmatched rows from the table that is specified before the LEFT OUTER JOIN clause.
+		SQL RIGHT OUTER JOIN creates a result table and includes into it all the records from the right table and only matching rows from the left table.
+		SQL SELF JOIN joins the table to itself and allows comparing rows within the same table.
+		SQL CROSS JOIN creates a result table containing paired combination of each row of the first table with each row of the second table.
+		
+		
+		
+Inner Join
+
+matching values and is used to retrieve data that appears in both tables.
+
+SELECT t1.table_id, t1.name,t2.color
+FROM tableA t1
+INNER JOIN tableB t2
+ON t1.table_id = t2.tableB_id;
+
+table_id;name;color
+1;apple;Red
+1;apple;Red
+1;apple;Red
+1;apple;Red
+2;Banana;yellow
+2;Banana;yellow
+3;Guava;Green
+
+Outer Join
+Outer Join is used to join multiple database tables into a combined result-set, that includes all the records, even if they don't satisfy the join condition. NULL values are displayed against these records where the join condition is not met.
+
+This scenario only occurs if the left table (or the first table) has more records than the right table (or the second table), or vice versa.
+There are three types of outer joins, namely −
+		Left (Outer) Join: Retrieves all the records from the first table, Matching records from the second table and NULL values in the unmatched rows.
+		Right (Outer) Join: Retrieves all the records from the second table, Matching records from the first table and NULL values in the unmatched rows.
+		Full (Outer) Join: Retrieves records from both the tables and fills the unmatched values with NULL.
+The SQL Left Join
+Left Join or Left Outer Join in SQL combines two or more tables, where the first table is returned wholly; but, only the matching record(s) are retrieved from the consequent tables. If zero (0) records are matched in the consequent tables, the join will still return a row in the result, but with NULL in each column from the right table.
+
+SELECT t1.table_id, t1.name,t2.color
+FROM tableA t1
+LEFT JOIN tableB t2
+ON t1.table_id = t2.tableB_id;
+
+table_id;name;color
+1;apple;Red
+1;apple;Red
+1;apple;Red
+1;apple;Red
+2;Banana;yellow
+2;Banana;yellow
+3;Guava;Green
+
+The SQL Right Join
+The Right Join or Right Outer Join query in SQL returns all rows from the right table, even if there are no matches in the left table. In short, a right join returns all the values from the right table, plus matched values from the left table or NULL in case of no matching join predicate.
+
+
+SELECT t1.table_id, t1.name,t2.color
+FROM tableA t1
+RIGHT JOIN tableB t2
+ON t1.table_id = t2.tableB_id;
+
+table_id;name;color
+1;apple;Red
+1;apple;Red
+1;apple;Red
+1;apple;Red
+2;Banana;yellow
+2;Banana;yellow
+3;Guava;Green
+
+The SQL Cross Join
+An SQL Cross Join is a basic type of inner join that is used to retrieve the Cartesian product (or cross product) of two individual tables. That means, this join will combine each row of the first table with each row of second table (i.e. permutations).
+
+SELECT t1.table_id, t1.name,t2.color
+FROM tableA t1
+CROSS JOIN tableB t2;
+table_id,name,color
+1,apple,Green
+1,apple,yellow
+1,apple,Red
+1,apple,Green
+1,apple,yellow
+1,apple,Red
+1,apple,Green
+1,apple,yellow
+1,apple,Red
+1,apple,Green
+1,apple,yellow
+1,apple,Red
+2,Banana,Green
+2,Banana,yellow
+2,Banana,Red
+2,Banana,Green
+2,Banana,yellow
+2,Banana,Red
+3,Guava,Green
+3,Guava,yellow
+3,Guava,Red
+
+SQL SELF JOIN
+A self join is a regular join, but the table is joined with itself.
+
+SELECT t1.table_id, t1.name,t2.color
+FROM tableA t1, tableB t2
+WHERE t1.table_id = t2.tableB_id;
+table_id;name;color
+1;apple;Red
+1;apple;Red
+1;apple;Red
+1;apple;Red
+2;Banana;yellow
+2;Banana;yellow
+3;Guava;Green
